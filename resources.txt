@@ -1,0 +1,3 @@
+MPC: https://github.com/kennysong/tinysmpc
+Algorand: https://github.com/algorand-devrel/pyteal-course
+Sandbox: https://github.com/algorand/sandbox
