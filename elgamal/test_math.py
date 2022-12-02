@@ -1,7 +1,7 @@
 import unittest
 import elgamal
-import VirtualMachine
-import PrivateScalar
+from VirtualMachine import VirtualMachine
+from PrivateScalar import PrivateScalar
 def protocol():
     m1 = 10
     m2 = 12
@@ -14,9 +14,6 @@ def protocol():
     c3 = elgamal.encrypt(publicKey, str(m3))
 
     #additon and multiplication of SharedScalar
-    a = PrivateScalar(10, alice)
-    b = PrivateScalar(12, bob)
-    c = PrivateScalar(4, charlie)
 
     #machines
     alice = VirtualMachine('alice')
@@ -24,10 +21,20 @@ def protocol():
     charlie = VirtualMachine('charlie')
 
     #sharing
-    #sharing the generated values
-    a_shared = a.share([alice, bob, charlie])
-    b_shared = b.share([alice, bob, charlie])
-    c_shared = c.share([alice, bob, charlie])
+    a = PrivateScalar(c1, alice)
+    b = PrivateScalar(c2, bob)
+    c = PrivateScalar(c3, charlie)
+
+    # how to divide our private key into three parts
+        #share sk1, sk2, sk3 with each parties
+    # perform multiplication m1*m2 using p1 and p2
+        # share * result with admin
+        # share enc(m3) with admin
+        # share sk1, sk2, sk3 keys with admin
+    # admin: reconstruct private key, perform addition, print output
+    print(a)
+    print(b)
+    print(c)
 
 
 
@@ -57,15 +64,16 @@ class GreatestCommonDivisorTests(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    keys = elgamal.generate_keys()
-    print(keys)
+    # keys = elgamal.generate_keys()
+    # print(keys)
     
 
-    p1 = elgamal.decrypt(keys['privateKey'], c1)
-    p2 = elgamal.decrypt(keys['privateKey'], c2)
-    p3 = elgamal.decrypt(keys['privateKey'], c3)
-    print(p1)
-    print(p2)
-    print(p3)
+    # p1 = elgamal.decrypt(keys['privateKey'], c1)
+    # p2 = elgamal.decrypt(keys['privateKey'], c2)
+    # p3 = elgamal.decrypt(keys['privateKey'], c3)
+    # print(p1)
+    # print(p2)
+    # print(p3)
+    protocol()
 
     # unittest.main()
